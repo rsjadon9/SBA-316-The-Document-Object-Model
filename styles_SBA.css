@@ -2,23 +2,38 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: cyan;
-
-
-    border: 10px solid rgb(0, 191, 255);
-
-}
-
-header {
-    background-color: rgb(0, 191, 255);
-
-    padding: 20px;
+    background: #04A1BF;
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    border: 10px solid rgb(0, 191, 255);
 }
 
-h1 {
-    color: #fff;
+header h1 {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.help {
+    margin: 30px 0px;
+    font-weight: bold;
+}
+
+
+#first {
+    margin-top: 10px;
+    color: #FFCD5D;
+}
+
+#second {
+    color: #51DF70;
+
+
+}
+
+#third {
+    color: yellow;
+    margin-bottom: 30px;
 }
 
 form {
@@ -32,8 +47,10 @@ label {
 }
 
 input {
-    padding: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    min-width: 55%;
+    padding: 10px;
+    border: none;
 }
 
 button {
@@ -50,8 +67,8 @@ button {
 
 
 button:disabled {
-    background-color: #95a5a6;
-    /* Grayed-out color for the disabled button */
+    background-color: red;
+
 }
 
 
@@ -69,7 +86,7 @@ button:disabled {
 
 .completed {
     text-decoration: line-through;
-    background-color: #d3ffd3;
+    background-color: lightcoral;
 
 }
 
