@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles_SBA.css">
+    <title>To-Do List</title>
+</head>
+
+<body>
+    <header>
+        <h1>To-Do List</h1>
+    </header>
+
+    <form id="todoForm">
+        <label for="taskInput">Task:</label>
+        <input type="text" id="taskInput" pattern="[a-zA-Z0-9\s]+" required>
+        <button type="submit" id="addTaskBtn">Add Task</button>
+    </form>
+
+    <div id="taskList"></div>
+
+    <!-- Counter element to display the total number of tasks -->
+    <p id="counter">Total tasks: 0</p>
+
+
+
+    <script src="script_SBA.js"></script>
+</body>
+
+</html>
