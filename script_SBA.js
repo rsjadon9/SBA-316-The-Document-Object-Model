@@ -1,4 +1,3 @@
-
 var todoForm = document.getElementById('todoForm');
 var taskInput = document.getElementById('taskInput');
 var taskList = document.getElementById('taskList');
@@ -19,10 +18,17 @@ function addTask(event) {
 
     if (taskText !== '') {
         var taskElement = document.createElement('div');
-        taskElement.textContent = taskText;
         taskElement.className = 'task';
 
+        var taskTextElement = document.createElement('span');
+        taskTextElement.textContent = taskText;
 
+        var deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.className = 'delete-btn';
+
+        taskElement.appendChild(taskTextElement);
+        taskElement.appendChild(deleteBtn);
 
         taskList.appendChild(taskElement);
 
@@ -42,7 +48,15 @@ function addTask(event) {
 function handleTaskClick(event) {
     var target = event.target;
 
-    if (target.tagName === 'DIV' && target.parentElement === taskList) {
+    if (target.classList.contains('delete-btn')) {
+        // If the clicked element is the "Delete" button, handle the deletion
+        var taskElement = target.closest('.task');
+        taskList.removeChild(taskElement);
+        counter--;
+        counterElement.textContent = 'Total tasks: ' + counter;
+        saveTasks();
+    } else if (target.tagName === 'DIV' && target.parentElement === taskList) {
+        // If the clicked element is a task, toggle the completed status
         target.classList.toggle('completed');
         saveTasks();
     }
@@ -50,14 +64,13 @@ function handleTaskClick(event) {
 
 function validateInput() {
     var taskText = taskInput.value.trim();
-    var addButton = document.getElementById('addTaskBtn');
-    addButton.disabled = taskText === '' || !taskInput.checkValidity();
+    // Adjust validation logic if needed
 }
 
 function saveTasks() {
     var tasks = Array.from(taskList.children).map(function (taskElement) {
         return {
-            text: taskElement.textContent,
+            text: taskElement.querySelector('span').textContent,
             completed: taskElement.classList.contains('completed')
         };
     });
@@ -73,9 +86,27 @@ function loadTasks() {
 
         tasks.forEach(function (task) {
             var taskElement = document.createElement('div');
-            taskElement.textContent = task.text;
             taskElement.className = task.completed ? 'task completed' : 'task';
+
+            var taskTextElement = document.createElement('span');
+            taskTextElement.textContent = task.text;
+
+            var deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+
+            taskElement.appendChild(taskTextElement);
+            taskElement.appendChild(deleteBtn);
+
             taskList.appendChild(taskElement);
+
+            // Add event listener for the delete button
+            deleteBtn.addEventListener('click', function () {
+                taskList.removeChild(taskElement);
+                counter--;
+                counterElement.textContent = 'Total tasks: ' + counter;
+                saveTasks();
+            });
         });
 
         // Update the counter and display it based on the loaded tasks
@@ -83,4 +114,3 @@ function loadTasks() {
         counterElement.textContent = 'Total tasks: ' + counter;
     }
 }
-
